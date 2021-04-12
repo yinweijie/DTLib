@@ -1,6 +1,7 @@
 #include "Exception.h"
 #include <cstring>
 #include <cstdlib>
+#include <cstdio>
 
 using namespace std;
 
@@ -14,7 +15,8 @@ void Exception::init(const char* message, const char* file, int line)
     if(file != nullptr)
     {
         char sl[16] = {0};
-        itoa(line, sl, 10);
+        // itoa(line, sl, 10);
+        snprintf(sl, sizeof(sl), "%d", line);
 
         m_location = static_cast<char*>( malloc(strlen(file) + strlen(sl) + 2) );
         strcpy(m_location, file);
